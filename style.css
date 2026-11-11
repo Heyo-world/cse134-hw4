@@ -61,9 +61,10 @@ project-card{
   padding: 0.5rem;
   background-color: var(--card-color);
   border: 1px solid var(--accent-color);
-  width: 100%;
+  width: 90%;
   max-width: 55rem;
   margin: 1rem auto;
+  box-sizing: border-box;
 }
 
 /* Keyword color helper classes replacing inline styles */
