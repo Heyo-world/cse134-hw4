@@ -148,3 +148,6 @@ footer{
 }
 
 /*  For HW4's form-no-js.html */
+input:required {
+  font-style: bold;
+}
