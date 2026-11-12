@@ -5,10 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const emailField = document.getElementById("form-email");
     const commentsField = document.getElementById("form-comments");
     
-    const nameError = document.getElementById("name-error");
-    const emailError = document.getElementById("email-error");
-    const commentsError = document.getElementById("comments-error");
-    const charRemaining = document.getElementById("comments-info");
+    const charRemaining = document.getElementById("comments-count");
     const formErrorsInput = document.getElementById("form-errors-input");
 
     let formErrors = [];
