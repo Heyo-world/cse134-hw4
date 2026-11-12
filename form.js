@@ -1,18 +1,19 @@
-
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
     const nameField = document.getElementById("form-name");
     const emailField = document.getElementById("form-email");
     const commentsField = document.getElementById("form-comments");
     
+    const nameError = document.getElementById("name-error");
+    const emailError = document.getElementById("email-error");
+    const commentsError = document.getElementById("comments-error");
     const charRemaining = document.getElementById("comments-count");
     const formErrorsInput = document.getElementById("form-errors-input");
 
     let formErrors = [];
 
 
-    function validateField(inputID) {
-        const input = document.getElementById(inputID);
+    function validateField(input, errorElement) {
         const validityState = input.validity;
 
         input.setCustomValidity("");
@@ -55,17 +56,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    nameField.addEventListener("input", () => validateField(nameField, nameError));
+    emailField.addEventListener("input", () => validateField(emailField, emailError));
     commentsField.addEventListener("input", () => {
         updateCharacterCount();
-        validateField(commentsField);
+        validateField(commentsField, commentsError);
     });
 
-    nameField.addEventListener("input", () => validateField(nameField));
-    emailField.addEventListener("input", () => validateField(emailField));
-
-    nameField.addEventListener("blur", () => validateField(nameField));
-    emailField.addEventListener("blur", () => validateField(emailField));
-    commentsField.addEventListener("blur", () => validateField(commentsField));
+    nameField.addEventListener("blur", () => validateField(nameField, nameError));
+    emailField.addEventListener("blur", () => validateField(emailField, emailError));
+    commentsField.addEventListener("blur", () => validateField(commentsField, commentsError));
 
     // Add errors to formErrors[]
     form.addEventListener("invalid", (event) => {
