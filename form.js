@@ -28,7 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
             input.setCustomValidity("");
         }
 
-        input.reportValidity();
+        if (!validityState.valid) {
+            errorElement.textContent = input.validationMessage;
+            errorElement.style.color = "#ffa182"; // Accent color
+        } else {
+            errorElement.textContent = defaultHintText;
+            errorElement.style.color = "lightgray";
+        }
     }
 
     // Character Counter & Warning Logic for Comments
