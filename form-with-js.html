@@ -28,7 +28,7 @@
 	<hr>
 	<main>
     <h2>Form With Javascript</h2>
-    <form action="https://httpbin.org/post" method="POST" novalidate>
+    <form action="https://httpbin.org/post" method="POST">
         <p>Please complete all required (*) fields.</p>
         <fieldset>
             <legend>Contact Information</legend>
@@ -47,7 +47,7 @@
 			<label for="form-comments">Comments*:</label><br>
 			<textarea id="form-comments" name="form-comments" rows="3" minlength="10" maxlength="1000" required aria-describedby="comments-error comments-info"></textarea><br>
             <small id="comments-error" aria-live="polite">Please enter 10-1000 characters.</small><br>
-            <small id="comments-count" aria-live="polite">Characters remaining: 1000</small><small> Indicator: Uncommented addEventListener</small><br><br>
+            <small id="comments-count" aria-live="polite">Characters remaining: 1000</small><small> Indicator: Removed novalidate</small><br><br>
 
             <button type="submit">Submit</button>
         </fieldset>
