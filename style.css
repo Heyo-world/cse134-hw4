@@ -161,6 +161,6 @@ input:user-invalid, textarea:user-invalid{
   background-color: #f18d7c;
 }
 
-input:user-valid, textarea:user-invalid{
+input:user-valid, textarea:user-valid{
   background-color: #c9eba2;
 }
