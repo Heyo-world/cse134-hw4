@@ -158,7 +158,7 @@ input:required {
 }
 
 input:user-invalid, textarea:user-invalid{
-  background-color: #f18d7c;
+  background-color: #e07967;
 }
 
 input:user-valid, textarea:user-valid{

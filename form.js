@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
             charRemaining.style.color = "#ffd582ff"; 
             charRemaining.textContent = `Warning: ${remaining} characters remaining.`;
         } else if (remaining === 0) {
-            charRemaining.style.color = "#f18d7c";
+            charRemaining.style.color = "#e07967";
             charRemaining.textContent = "Character limit reached.";
         } else {
             charRemaining.style.color = "inherit";
