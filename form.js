@@ -60,8 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
         validateField(commentsField);
     });
 
-    //nameField.addEventListener("input", () => validateField(nameField));
-    //emailField.addEventListener("input", () => validateField(emailField));
+    nameField.addEventListener("input", () => validateField(nameField));
+    emailField.addEventListener("input", () => validateField(emailField));
 
     nameField.addEventListener("blur", () => validateField(nameField));
     emailField.addEventListener("blur", () => validateField(emailField));
