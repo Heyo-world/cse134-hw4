@@ -1,9 +1,6 @@
-//were
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("contact-form");
+    const form = document.querySelector("form");
     const nameField = document.getElementById("form-name");
     const emailField = document.getElementById("form-email");
     const commentsField = document.getElementById("form-comments");
@@ -11,118 +8,100 @@ document.addEventListener("DOMContentLoaded", () => {
     const nameError = document.getElementById("name-error");
     const emailError = document.getElementById("email-error");
     const commentsError = document.getElementById("comments-error");
-    const charCountDisplay = document.getElementById("char-count");
-    const commentsInfo = document.getElementById("comments-info");
+    const charRemaining = document.getElementById("comments-info");
     const formErrorsInput = document.getElementById("form-errors-input");
 
-    // Array to record validation errors during unsuccessful submission attempts
-    let form_errors = [];
+    let formErrors = [];
 
-    // Helper: Set custom validity and display validation feedback
-    function validateField(field, errorElement) {
-        field.setCustomValidity(""); // Clear previous custom messages first
 
-        if (field.validity.valueMissing) {
-            field.setCustomValidity("This field is required.");
-        } else if (field.type === "email" && field.validity.typeMismatch) {
-            field.setCustomValidity("Please enter a valid email address (e.g. name@example.com).");
-        } else if (field.validity.tooShort) {
-            field.setCustomValidity(`Value is too short. Minimum length is ${field.minLength} characters.`);
-        } else if (field.validity.tooLong) {
-            field.setCustomValidity(`Value is too long. Maximum length is ${field.maxLength} characters.`);
-        }
+    function validateField(inputID) {
+        const input = document.getElementById(inputID);
+        const validityState = input.validity;
 
-        if (!field.validity.valid) {
-            errorElement.textContent = field.validationMessage;
-            errorElement.style.color = "#ff6b6b";
+        input.setCustomValidity("");
+        if (validityState.valueMissing) {
+            input.setCustomValidity("This field is required.");
+        } else if (validityState.typeMismatch && input.type === "email") {
+            input.setCustomValidity("Please enter a valid email address (e.g., name@example.com).");
+        } else if (validityState.tooShort) {
+            input.setCustomValidity("Enter at least ${input.minlength} characters.");
+        } else if (validityState.tooLong) {
+            input.setCustomValidity("Enter at most ${input.maxLength} characters.");
         } else {
-            errorElement.textContent = "";
+            input.setCustomValidity("");
         }
+
+        input.reportValidity();
     }
 
-    // 1. Character Counter & Warning Logic for Comments
+    // Character Counter & Warning Logic for Comments
     function updateCharacterCount() {
         const maxLength = parseInt(commentsField.getAttribute("maxlength")) || 1000;
         const currentLength = commentsField.value.length;
         const remaining = maxLength - currentLength;
-        
-        charCountDisplay.textContent = remaining;
 
-        // Warning threshold when reaching 50 characters or fewer remaining
         if (remaining <= 50 && remaining > 0) {
-            commentsInfo.style.color = "#ffa182"; // Warning color
-            commentsInfo.textContent = `Warning: ${remaining} characters remaining.`;
+            charRemaining.style.color = "#ffd582ff"; 
+            charRemaining.textContent = 'Warning: ${remaining} characters remaining.';
         } else if (remaining === 0) {
-            commentsInfo.style.color = "#ff6b6b";
-            commentsInfo.textContent = "Character limit reached!";
+            charRemaining.style.color = "#f18d7c";
+            charRemaining.textContent = "Character limit reached.";
         } else {
-            commentsInfo.style.color = "inherit";
-            commentsInfo.textContent = `Characters remaining: ${remaining}`;
+            charRemaining.style.color = "inherit";
+            charRemaining.textContent = 'Characters remaining: ${remaining}';
         }
     }
 
     commentsField.addEventListener("input", () => {
         updateCharacterCount();
-        validateField(commentsField, commentsError);
+        validateField(commentsField);
     });
 
-    nameField.addEventListener("input", () => validateField(nameField, nameError));
-    emailField.addEventListener("input", () => validateField(emailField, emailError));
+    //nameField.addEventListener("input", () => validateField(nameField));
+    //emailField.addEventListener("input", () => validateField(emailField));
 
-    // Validate fields when user leaves them (blur)
-    nameField.addEventListener("blur", () => validateField(nameField, nameError));
-    emailField.addEventListener("blur", () => validateField(emailField, emailError));
-    commentsField.addEventListener("blur", () => validateField(commentsField, commentsError));
+    nameField.addEventListener("blur", () => validateField(nameField));
+    emailField.addEventListener("blur", () => validateField(emailField));
+    commentsField.addEventListener("blur", () => validateField(commentsField));
 
-    // 2. Track Invalid Submissions for Error History (`form_errors`)
-    // Listen for the native 'invalid' event in capture phase because it doesn't bubble
+    // Add errors to formErrors[]
     form.addEventListener("invalid", (event) => {
-        event.preventDefault(); // Prevent default browser UI popups if handling inline
+        event.preventDefault(); 
         const target = event.target;
         
-        let errorDescription = target.validationMessage;
-
-        // Push entry matching the requirements (no personal data/text values recorded)
-        form_errors.push({
+        formErrors.push({
             field: target.name || target.id,
-            message: errorDescription,
+            message: target.validationMessage,
             timestamp: new Date().toISOString()
         });
     }, true);
 
-    // 3. Form Submission Handling
+    // Form Submission Handling
     form.addEventListener("submit", (event) => {
-        form_errors = []; // Reset for this specific submission attempt
+        formErrors = []; // Reset history for this specific submission attempt
 
-        // Trigger native check validity on fields
-        nameField.reportValidity();
-        validateField(nameField, nameError);
-
+        validateField(nameField);
         if (!nameField.validity.valid) {
-            form_errors.push({ field: "form-name", message: nameField.validationMessage });
+            formErrors.push({ field: nameField.name, message: nameField.validationMessage });
         }
 
-        emailField.reportValidity();
-        validateField(emailField, emailError);
+        validateField(emailField);
         if (!emailField.validity.valid) {
-            form_errors.push({ field: "form-email", message: emailField.validationMessage });
+            formErrors.push({ field: emailField.name, message: emailField.validationMessage });
         }
 
-        commentsField.reportValidity();
-        validateField(commentsField, commentsError);
+        validateField(commentsField);
         if (!commentsField.validity.valid) {
-            form_errors.push({ field: "form-comments", message: commentsField.validationMessage });
+            formErrors.push({ field: commentsField.name, message: commentsField.validationMessage });
         }
 
-        // If validation fails, block submission and serialize error history
+        // If validation fails, block submission
         if (!form.checkValidity()) {
             event.preventDefault();
-            formErrorsInput.value = JSON.stringify(form_errors);
-            console.warn("Form validation failed. Recorded errors:", form_errors);
-        } else {
-            // Successful submission: serialize error history into hidden field right before submit
-            formErrorsInput.value = JSON.stringify(form_errors);
         }
+
+        // Serialize error history into the hidden input field right before submission
+        formErrorsInput.value = JSON.stringify(formErrors);
     });
 
     // Initialize counter on load
