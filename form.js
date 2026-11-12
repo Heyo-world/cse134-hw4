@@ -24,9 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (validityState.typeMismatch && input.type === "email") {
             input.setCustomValidity("Please enter a valid email address (e.g., name@example.com).");
         } else if (validityState.tooShort) {
-            input.setCustomValidity("Enter at least ${input.minlength} characters.");
+            input.setCustomValidity(`Enter at least ${input.minlength} characters.`);
         } else if (validityState.tooLong) {
-            input.setCustomValidity("Enter at most ${input.maxLength} characters.");
+            input.setCustomValidity(`Enter at most ${input.maxLength} characters.`);
         } else {
             input.setCustomValidity("");
         }
@@ -42,13 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (remaining <= 50 && remaining > 0) {
             charRemaining.style.color = "#ffd582ff"; 
-            charRemaining.textContent = 'Warning: ${remaining} characters remaining.';
+            charRemaining.textContent = `Warning: ${remaining} characters remaining.`;
         } else if (remaining === 0) {
             charRemaining.style.color = "#f18d7c";
             charRemaining.textContent = "Character limit reached.";
         } else {
             charRemaining.style.color = "inherit";
-            charRemaining.textContent = 'Characters remaining: ${remaining}';
+            charRemaining.textContent = `Characters remaining: ${remaining}`;
         }
     }
 
