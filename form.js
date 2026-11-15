@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const charRemaining = document.getElementById("comments-count");
     const formErrorsInput = document.getElementById("form-errors-input");
 
+    nameError.defaultHint = nameError.textContent;
+    emailError.defaultHint = emailError.textContent;
+    commentsError.defaultHint = commentsError.textContent;
+
     let formErrors = [];
 
 
@@ -17,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const validityState = input.validity;
         const minLimit = input.getAttribute("minlength") || input.minLength;
         const maxLimit = input.getAttribute("maxlength") || input.maxLength;
-        const defaultHintText = errorElement.textContent;
+        const defaultHintText = errorElement.defaultHint || "";
 
         input.setCustomValidity("");
         if (validityState.valueMissing) {
