@@ -22,9 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (validityState.typeMismatch && input.type === "email") {
             input.setCustomValidity("Please enter a valid email address (e.g., name@example.com).");
         } else if (validityState.tooShort) {
-            input.setCustomValidity(`Enter at least ${input.minLength} characters.`);
+            const minLimit = input.getAttribute("minlength") || input.minLength;
+            input.setCustomValidity(`Enter at least ${minLimit} characters.`);
         } else if (validityState.tooLong) {
-            input.setCustomValidity(`Enter at most ${input.maxLength} characters.`);
+            const maxLimit = input.getAttribute("maxlength") || input.maxLength;
+            input.setCustomValidity(`Enter at most ${maxLimit} characters.`);
         } else {
             input.setCustomValidity("");
         }
