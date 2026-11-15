@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function validateField(input, errorElement) {
         const validityState = input.validity;
+        const minLimit = input.getAttribute("minlength") || input.minLength;
+        const maxLimit = input.getAttribute("maxlength") || input.maxLength;
 
         input.setCustomValidity("");
         if (validityState.valueMissing) {
@@ -22,16 +24,14 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (validityState.typeMismatch && input.type === "email") {
             input.setCustomValidity("Please enter a valid email address (e.g., name@example.com).");
         } else if (validityState.tooShort) {
-            const minLimit = input.getAttribute("minlength") || input.minLength;
             input.setCustomValidity(`Enter at least ${minLimit} characters.`);
-        } else if (validityState.tooLong) {
-            const maxLimit = input.getAttribute("maxlength") || input.maxLength;
+        } else if (validityState.tooLong) { //Won't happen manually
             input.setCustomValidity(`Enter at most ${maxLimit} characters.`);
         } else {
             input.setCustomValidity("");
         }
 
-        if (!validityState.valid) {
+        if (!validityState.checkValidity()) {
             errorElement.textContent = input.validationMessage;
             errorElement.style.color = "#ffa182"; // Accent color
         } else {
@@ -47,10 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const remaining = maxLength - currentLength;
 
         if (remaining <= 50 && remaining > 0) {
-            charRemaining.style.color = "#ffd582ff"; 
+            charRemaining.style.color = "#ffea98ff"; 
             charRemaining.textContent = `Warning: ${remaining} characters remaining.`;
         } else if (remaining === 0) {
-            charRemaining.style.color = "#e07967";
+            charRemaining.style.color = "#ffa182";
             charRemaining.textContent = "Character limit reached.";
         } else {
             charRemaining.style.color = "inherit";
