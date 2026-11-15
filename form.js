@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const validityState = input.validity;
         const minLimit = input.getAttribute("minlength") || input.minLength;
         const maxLimit = input.getAttribute("maxlength") || input.maxLength;
-        defaultHintText = errorElement.textContent;
+        const defaultHintText = errorElement.textContent;
 
         input.setCustomValidity("");
         if (validityState.valueMissing) {
