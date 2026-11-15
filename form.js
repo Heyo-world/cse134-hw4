@@ -90,17 +90,17 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", (event) => {
         formErrors = []; // Reset history for this specific submission attempt
 
-        validateField(nameField);
+        validateField(nameField, nameError);
         if (!nameField.validity.valid) {
             formErrors.push({ field: nameField.name, message: nameField.validationMessage });
         }
 
-        validateField(emailField);
+        validateField(emailField, emailError);
         if (!emailField.validity.valid) {
             formErrors.push({ field: emailField.name, message: emailField.validationMessage });
         }
 
-        validateField(commentsField);
+        validateField(commentsField, commentsError);
         if (!commentsField.validity.valid) {
             formErrors.push({ field: commentsField.name, message: commentsField.validationMessage });
         }
