@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
             input.setCustomValidity("");
         }
 
-        if (!input.checkValidity()) {
+        if (!validityState.valid) {
             errorElement.textContent = input.validationMessage;
             errorElement.style.color = "#ffa182"; // Accent color
         } else {
