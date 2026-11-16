@@ -16,6 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let formErrors = [];
 
+    //Get current theme colors
+    function getAccentColor() {
+        return getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim();
+    }
+    function getHintColor() {
+        return getComputedStyle(document.documentElement).getPropertyValue('--hint-color').trim();
+    }
 
     function validateField(input, errorElement) {
         const validityState = input.validity;
@@ -38,10 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!validityState.valid) {
             errorElement.textContent = input.validationMessage;
-            errorElement.style.color = "#ffa182"; // Accent color
+            errorElement.style.color = getAccentColor; // Accent color
         } else {
             errorElement.textContent = defaultHintText;
-            errorElement.style.color = "lightgray";
+            errorElement.style.color = "";
         }
     }
 
@@ -52,10 +59,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const remaining = maxLength - currentLength;
 
         if (remaining <= 50 && remaining > 0) {
-            charRemaining.style.color = "#ffea98ff"; 
+            charRemaining.style.fontWeight = "bold";
             charRemaining.textContent = `Warning: ${remaining} characters remaining.`;
         } else if (remaining === 0) {
-            charRemaining.style.color = "#ffa182";
+            charRemaining.style.fontWeight = "bold";
+            charRemaining.style.fontStyle = "italic";
             charRemaining.textContent = "Character limit reached.";
         } else {
             charRemaining.style.color = "inherit";
