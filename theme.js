@@ -10,10 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.documentElement.setAttribute("data-theme", "light");
                 themeToggleButton.setAttribute("aria-label", "Switch to dark theme");
                 themeToggleButton.textContent = "☀️ Light"; // Raw emoji string
+                themeToggleButton.style.fontFamily = "";
             } else {
                 document.documentElement.removeAttribute("data-theme");
                 themeToggleButton.setAttribute("aria-label", "Switch to light theme");
                 themeToggleButton.textContent = "🌙 Dark"; // Raw emoji string
+                themeToggleButton.style.fontFamily = "";
             }
         };
 
