@@ -60,12 +60,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (remaining <= 50 && remaining > 0) {
             charRemaining.style.fontWeight = "bold";
+            charRemaining.style.fontStyle = "none";
+            charRemaining.style.color = "";
             charRemaining.textContent = `Warning: ${remaining} characters remaining.`;
         } else if (remaining === 0) {
             charRemaining.style.fontWeight = "bold";
             charRemaining.style.fontStyle = "italic";
+            charRemaining.style.color = "";
             charRemaining.textContent = "Character limit reached.";
         } else {
+            charRemaining.style.fontWeight = "none";
+            charRemaining.style.fontStyle = "none";
             charRemaining.style.color = "";
             charRemaining.textContent = `Characters remaining: ${remaining}`;
         }
