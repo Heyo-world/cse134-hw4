@@ -50,12 +50,6 @@ h1 {
   margin-bottom: 0.5rem;
 }
 
-.theme-toggle{
-    text-align: center;
-    position: absolute;
-    bottom: 10em;
-    right: 60em;        
-}
 h2 {
   font-size: 2rem;
   color: var(--accent-color);
@@ -66,13 +60,26 @@ h3 {
   color: var(--accent-color);
 }
 
+
 header {
   background-color: var(--card-color);
   border: 1px solid var(--accent-color);
   padding: 0.5rem 1.5rem;
   border-radius: 6px;
   margin-bottom: 2rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
+
+button{
+  background-color: var(--card-color);
+  color: var(--font-color);
+  border: 1px solid var(--accent-color);
+}
+
 
 nav ul {
   display: flex;
