@@ -47,8 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
             errorElement.textContent = input.validationMessage;
             errorElement.style.color = getAccentColor(); // Accent color
         } else {
-            errorElement.textContent = defaultHintText;
             errorElement.style.color = "";
+            errorElement.textContent = defaultHintText;
         }
     }
 
