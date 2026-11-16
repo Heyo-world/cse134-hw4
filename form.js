@@ -20,9 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
     function getAccentColor() {
         return getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim();
     }
-    function getHintColor() {
+    /*function getHintColor() {
         return getComputedStyle(document.documentElement).getPropertyValue('--hint-color').trim();
-    }
+    }*/
 
     function validateField(input, errorElement) {
         const validityState = input.validity;
@@ -45,10 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!validityState.valid) {
             errorElement.textContent = input.validationMessage;
-            errorElement.style.color = getAccentColor; // Accent color
+            errorElement.style.color = getAccentColor(); // Accent color
         } else {
             errorElement.textContent = defaultHintText;
-            errorElement.style.color = getHintColor();
+            errorElement.style.color = "";
         }
     }
 
