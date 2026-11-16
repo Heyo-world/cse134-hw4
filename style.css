@@ -62,7 +62,7 @@ header-top{
 h1 {
   font-size: 3rem;
   color: var(--accent-color);
-  margin-bottom: 0.5rem;
+  margin: 0;
 }
 
 h2 {
