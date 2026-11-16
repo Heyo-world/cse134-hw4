@@ -37,12 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             setTheme(newTheme);
 
-            [nameError, emailError, commentsError].forEach(errorEl => {
-                if (errorEl.style.color !== "") {
-                    errorEl.style.color = getAccentColor();
-                }
-            })
-
             try {
                 localStorage.setItem("theme", newTheme);
             } catch (e) {
