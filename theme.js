@@ -42,6 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
             } catch (e) {
                 console.warn("Could not save theme preference to localStorage:", e);
             }
+
+            document.dispatchEvent(new CustomEvent("themeChanged"));
         });
     }
 });

@@ -20,12 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
     function getAccentColor() {
         return getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim();
     }
-    
-    themeToggleButton.addEventListener("click", () => {
-        // ... your existing theme switching logic ...
 
-        // Instantly update any currently visible error messages
+    document.addEventListener("themeChanged", () => {
         [nameError, emailError, commentsError].forEach(errorEl => {
+            // If the error element currently has an inline color set (meaning an error is displayed)
             if (errorEl.style.color !== "") {
                 errorEl.style.color = getAccentColor();
             }
