@@ -80,6 +80,7 @@ button{
   color: var(--font-color);
   font-family: var(--font-stack);
   border: 1px solid var(--accent-color);
+  padding: 0.2rem;
 }
 
 nav ul {
