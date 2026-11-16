@@ -2,14 +2,15 @@
     navigation: auto;
 }
 
-/* Light theme */
+/* Dark theme */
 :root{
     --bg-color: #083159;
     --card-color: #154675;
     --accent-color: #ffa182;
     --font-color: white;
     --link-color: #8485fe;
-    --font-stack: Gill Sans, sans-serif
+    --font-stack: Gill Sans, sans-serif;
+    --hint-color: lightgray;
     --max-width: 65rem;
 
     --keyword-lang: #49a9fc;
@@ -23,7 +24,8 @@
     --accent-color: #e06262;
     --font-color: #083159;
     --link-color: #5b5dda;
-    --font-stack: Gill Sans, sans-serif
+    --font-stack: Gill Sans, sans-serif;
+    --hint-color: #1f374e;
     --max-width: 65rem;
 
     --keyword-lang: #0172c2;
@@ -78,6 +80,12 @@ nav a {
   border-radius: 4px;
 }
 
+hr{
+  border: none;
+    height: 1px;
+    background-color: var(--font-color);
+}
+
 project-card{
   display: flex;
   flex-direction: column;
@@ -91,9 +99,9 @@ project-card{
 }
 
 /* Keyword color helper classes replacing inline styles */
-.keyword-lang { color: #49a9fc; }
-.keyword-technical { color: #8eff69; }
-.keyword-soft { color: #c67aff; }
+.keyword-lang { color: var(--keyword-lang) }
+.keyword-technical { color: var(--keyword-technical) }
+.keyword-soft { color: var(--keyword-soft); }
 
 contact-grid{
   display: grid;
@@ -108,6 +116,7 @@ fieldset{
     max-width: 60rem; 
     width: 100%;
     margin: 15px;
+    border: 2px solid var(--font-color);
 }
 textarea{
     min-width: 0; 
