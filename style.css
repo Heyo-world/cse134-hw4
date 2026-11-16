@@ -9,7 +9,7 @@
     --accent-color: #ffa182;
     --font-color: white;
     --link-color: #8485fe;
-    --font-stack: Gill Sans, sans-serif;
+    --font-stack: Georgia, serif;
     --hint-color: lightgray;
     --max-width: 65rem;
 
@@ -24,7 +24,7 @@
     --accent-color: #e06262;
     --font-color: #083159;
     --link-color: #5b5dda;
-    --font-stack: Gill Sans, sans-serif;
+    --font-stack: Georgia, serif;
     --hint-color: #1f374e;
     --max-width: 65rem;
 
@@ -48,6 +48,13 @@ h1 {
   font-size: 3rem;
   color: var(--accent-color);
   margin-bottom: 0.5rem;
+}
+
+.theme-toggle{
+    text-align: center;
+    position: absolute;
+    bottom: 10em;
+    right: 60em;        
 }
 h2 {
   font-size: 2rem;
