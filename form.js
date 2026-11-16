@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
             charRemaining.style.fontStyle = "italic";
             charRemaining.textContent = "Character limit reached.";
         } else {
-            charRemaining.style.color = "inherit";
+            charRemaining.style.color = "";
             charRemaining.textContent = `Characters remaining: ${remaining}`;
         }
     }
