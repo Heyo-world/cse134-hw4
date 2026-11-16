@@ -20,9 +20,17 @@ document.addEventListener("DOMContentLoaded", () => {
     function getAccentColor() {
         return getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim();
     }
-    /*function getHintColor() {
-        return getComputedStyle(document.documentElement).getPropertyValue('--hint-color').trim();
-    }*/
+    
+    themeToggleButton.addEventListener("click", () => {
+        // ... your existing theme switching logic ...
+
+        // Instantly update any currently visible error messages
+        [nameError, emailError, commentsError].forEach(errorEl => {
+            if (errorEl.style.color !== "") {
+                errorEl.style.color = getAccentColor();
+            }
+        });
+    });
 
     function validateField(input, errorElement) {
         const validityState = input.validity;
